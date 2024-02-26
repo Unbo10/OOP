@@ -41,3 +41,4 @@ The use of the `global` keyword is not encouraged, since it could cause troubles
 `Ctrl + C` to stop the execution of any program.
 `Ctrl + R` to make a "back search", which searches for previously-written commands in the terminal.
 `Shift` to paste something from the clipboard, though at least in Windows `Ctrl + V` also works.
+
