@@ -98,7 +98,7 @@ The deal here is you can (and sometimes will need to) skip details of an object 
 
 > *Encapsulation is the process of grouping the extracted data into data capsules or classes (?)*.
 
-Using both abstraction and encapsulation you have objects that are capsules with a little screen to interact with them, but as another object, you can only know so much, depending on the level of abstraction given to the object. So, in summary, objects are encapsulated into tubes. To interact with these tubes a screen is available, but what's on it is defined according to the abstraction level of the object (*what* is an object depends on its level of abstraction). 
+Using both abstraction and encapsulation you have objects that are capsules with a little screen to interact with them, so, as another object, you can only know so much, depending on the level of abstraction given to the object you're trying to access (*what* is an object depends on its level of abstraction). 
 
 ```mermaid
 classDiagram
@@ -148,7 +148,7 @@ classDiagram
 
 ```
 
-### Public interface and private internals
+### Public interface and private internals (encapsulation)
 
 This might be a controversial simile, but we need to model objects the engineering way: we want each object to be a scientist, i.e., that it knows its internal functionality in detail, but when interacting with another objects will become engineers: they will only tell each other what's useful and relevant about them, so the others can work with them without having to deal with the difficult and irrelevant-to-their-purpose stuff.
 
@@ -180,15 +180,15 @@ classDiagram
 
 A Formula 1 car can be seen as such or as the union of many individual parts that together make up the actual car. Some of them may exist independently from the car, in fact all of them are produced independently and exist independently, but most of them don't make sense if they're not a part of the car. Those elements are then related to the F1 because they are its components: A Formula 1 *is composed of* an engine, wheels, the monocoque, the front wing, the rear wing, among others, but only the steering wheel and pedals will be desplayed to the driver for instance.
 
-Another example is a chess game: you got a chess set and two players. What the players are composed of doesn't matter. So, a chess set usually involves pieces and a board with 64 positions. However, the pieces are not related to the board as the positions are: the first ones exist independently from the board whereas the latter ones don't, why? Take a chess board with pieces over it and shake it: the pieces will fall but the positions won't, because a board is made out of them, and without them it simply isn't a chess board, whilst without pieces it is still a chess board.
+Another example is a chess game: you got a chess set and two players. What the players are composed of doesn't matter. So, a chess set usually involves pieces and a board with 64 positions. However, the pieces are not related to the board as the positions are: the first ones exist independently from the board whereas the latter ones don't. Why? Take a chess board with pieces over it and shake it: the pieces will fall but the positions won't, because a board is made out of them, and without them it simply isn't a chess board, whilst without pieces it is still a chess board.
 
-These two examples introduce as to composition and aggregation, which indicate the classes of what a class is composed of and their dependency of the class:
+These two examples introduce us to composition and aggregation, which indicate the classes of what a class is composed of and the relation between them:
 
 > *Composition is a relation of posession or belonging (a class **has a** class), and of dependent existance (objects).*
 
 > *Aggregation is a relation of incorporation or addition (a class **adds a** class).*
 
-Notice that posession is a form of incorporation, which entails that composition is a form of aggregation, but also addition is almost the same as belonging, which implies that aggregation is almost the same as composition, and that is often the case (classes will anyway be declared independently, so these relations can be seen as the same).
+Notice that posession is a form of incorporation, which entails that composition is a form of aggregation. In other words, aggregation and composition are often seen as the same since they are *class* relations, so it is only when an instance of a class is built that the difference will be seen.
 
 ```mermaid
 classDiagram
@@ -314,3 +314,35 @@ classDiagram
         -chemicals
     }
 ```
+
+### Polymorphism
+Say you have a bunch of cars, you are indeed the owner of a huge car collection, congratulations! You now want to gather them in categories or classes. You might start by sorting them by their method of propulsion, i.e., electric, hybrid or gas-powered. You then focus on the gas-powered cars and categorize them according to their transmission: mannual, automatic or semi-automatic.
+
+You're now explaining to a friend interesting in buying a car the difference and simmilarities between them, and you stutter when explaining them the different ways you can start different cars: they all start, yes, but each class has a different requirement and a different method to do so. Here is where polymorphism introduces itself.
+
+> *Polymorphism states that certain behaviors can have multiple forms, i.e., it can be different depending on **which class does** it and **what is required** by the executor instance.*
+
+So, with this in mind, you tell your friend all cars get started, but electric and hybrid require to be charged only, and no ignition is needed to start them, whereas the gas-powered machines need fuel and a whole different method to start the engine. Plus, hybrids and automatics often require a button to start the car, while manuals need a neutral gear or the clutch engaged to start the engine. And here is where you notice something different also: there are two types of polymorphism.
+
+> *Overriding is at the least an **addition of some specifications** to a behavior and at most a complete overwriting of the behavior. In any case, it involves **inheritance** by default (the behavior is inherited and then overriden in a subclass).*
+
+> *Overloading is **conditioning** the same behavior to **different contexts** deppending on different requirements or triggers. It doesn't involve inheritance (the behavior is done by the same class).*
+
+Something to note is that overriding occurs during runtime, whereas overloading happens during compile time. The reason lies in inheritance: the overloaded method or behavior will have multiple forms within the class, it is defined that way, whereas an overriden method will only appear once the instance of a subclass is created and the method is called using that instance, because then and only then the method will be necessarily redefined. For more information, click [here](https://www.javatpoint.com/compile-time-vs-runtime).
+
+
+### Encapsulation
+
+- All classes are **public** by default in Python, in fact, even the private and protected are not really public, since it doesn't realy change anything of the class.
+- To set an attribute protected you use a single underscore (_) before its name, and if it is a method you simply add one more at the end (e.g. \_function()\_)
+- To set something private use double underscore (__).
+
+Protected only allows the subclasses'instances to modify and access the class' instance's attributes and methods, whereas private doesn't allow any class apart from the on the private and public methods and attributes are declared.
+
+Private methods and attributes of a class can only be changed by an instance of the same class
+
+Usually, private attributes have a protected or public method associated which modify them or show them to the public interface, so it is a way of "violating" the privacy of the attribute using methods of the same class.
+
+### Polymorphism
+
+Classes often share methods and attributes (especially when using inheritance), in fact, an object of a class will often execute the same action as such of a parent or child class. However, each action may be done slightly different, for example, a driver in a manual, an automatic and a Formula 1 car turn the car's engine, but in a manual you need to set the gear on neutral before turning the key
