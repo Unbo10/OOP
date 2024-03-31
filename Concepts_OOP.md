@@ -342,7 +342,3 @@ Protected only allows the subclasses'instances to modify and access the class' i
 Private methods and attributes of a class can only be changed by an instance of the same class
 
 Usually, private attributes have a protected or public method associated which modify them or show them to the public interface, so it is a way of "violating" the privacy of the attribute using methods of the same class.
-
-### Polymorphism
-
-Classes often share methods and attributes (especially when using inheritance), in fact, an object of a class will often execute the same action as such of a parent or child class. However, each action may be done slightly different, for example, a driver in a manual, an automatic and a Formula 1 car turn the car's engine, but in a manual you need to set the gear on neutral before turning the key
