@@ -84,21 +84,29 @@ classDiagram
 
 ## The process of modeling objects and classes
 
-Although this sounds oddly simmilar to the [object-oriented strategy](#the-object-oriented-strategy) section, but this one refers to the abstraction, definition, hiding and linking of objects and classes.
+Although this sounds oddly simmilar to the [object-oriented strategy](#the-object-oriented-strategy) section, this one refers to the abstraction, definition, hiding and linking of objects and classes.
 
 ### Abstraction
 
 We, as humans, extract information from the real world all the time. In fact, some argue we do not even know the world as it truly is, just what we are allowed, by our physical and mental abilities, to comprehend annd grasp. Kant used to say sciences are human sciences, meaning they only work in the 'human' world.
 
-In the same way, we model objects and classes as a world apart, but as close as we can to 'real' life, describing objects' properties and behaviors, while grouping them in classes. This is what abstraction is all about: translating ideas, real-life situations, processes into an object-oriented design, much like taking objects from a dimension to another one without losing any of its essence.
+In the same way, we model objects and classes as a world apart, but *as close as we want* to 'real' life, describing objects' properties and behaviors, while grouping them in classes. This is what abstraction is all about: translating ideas, real-life situations, processes into an object-oriented design, much like taking objects from a dimension to another one without losing any of its essence.
 
 > *Abstraction is the process of grasping enough detail from a task so to model it in object-oriented terms.*
 
-The deal here is you can (and sometimes will need to) skip details of an object in a certain world to bring it to the OOW (Object-Oriented World). To do so, you get with yourself a capsule to the objects' dimension and capture the object so it gives you all the information you need to so you can leave the object free. The capsule now can be opened in the OOW and free the objects' model in a familiar language; that's **encapsulation**.
+In consequence, the abstraction process is the first to be done when applying the object-oriented approach to some task or problem. In fact, the output of the OOD (design) stage should be a class diagram which abstracts all the information grasped into an implementation specification or interface. In consequence, once you have the classes, the relations between them, its attributes and methods, and its instance count (the amount of instances to be created from that class), you should be all set to implement the design.
 
-> *Encapsulation is the process of grouping the extracted data into data capsules or classes (?)*.
+### Encapsulation
 
-Using both abstraction and encapsulation you have objects that are capsules with a little screen to interact with them, so, as another object, you can only know so much, depending on the level of abstraction given to the object you're trying to access (*what* is an object depends on its level of abstraction). 
+Although abstraction seems to be most of what's needed to model anything using the OO approach, there are other processes that take part in all three stages and are even part of abstraction. One of them is encapsulation, and plays a crucial role in object modeling:
+
+Just by looking at the word you can tell it should have something to do with capsules, right? Now go back to procedural programming, what do you have? A bunch of functions and variables flying around your code. It would be wonderful to wrap it all into more comprehensible blocks of code, wouldn't it? Well, that's what encapsulation is all about (and, in a way, it's what makes OOP possible):
+
+> *Encapsulation is the process of bundling or gluing together data and the methods that operate on that data within a single unit (class)*.
+
+So object-oriented modeling implies necesarrily to bring from the real, data, fantasy or any other world, some sort of information to the Object-Oriented World (OOW). To do that 'trip' or 'translation' you need to get the information into capsules that are unaltered in the trip to the OOW. Those capsules are created during the encapsulation process. So encapsulation means translating everything into classes that contain attributes and methods.
+
+> With the current definition, however, encapsulations seems pretty much the same as abstraction, so what's the difference? Well, when doing abstraction, you *grasp* or *select* certain information from all the available, whilst when applying encapsulation you *bundle* or *glue* the grapsed information into data units. That's why after OOA you end up with some requirements, which determine the filter the abstraction process will use; while after OOD, you end up with an implementation specification that tells you how is the information grasped going to fulfill the requirements.
 
 ```mermaid
 classDiagram
@@ -148,13 +156,13 @@ classDiagram
 
 ```
 
-### Public interface and private internals (encapsulation)
+### Information hiding (Public interface and private internals)
 
 This might be a controversial simile, but we need to model objects the engineering way: we want each object to be a scientist, i.e., that it knows its internal functionality in detail, but when interacting with another objects will become engineers: they will only tell each other what's useful and relevant about them, so the others can work with them without having to deal with the difficult and irrelevant-to-their-purpose stuff.
 
 To put it in formal terms, when being scientists the objects can change its internals without affecting their interaction with other objects, but when being engineers they'll use **information hiding**, which speaks by itself, and so only a **public interface** will be published to the outer objects so they can interact with the object enough to do what they need to do.
 
-This is pretty much abstraction: you translate enough of the object into the object-oriented world so you can know *what* you're dealing with, and depending of how much do you want to know about how it works, it will have different levels of abstraction.
+Although this is considered part of encapsulation, it is the last form of abstraction (after all, abstraction entails encapsulation): you translate enough of the object into the object-oriented world so you know *what* you're dealing with, and depending of how much do you want to know about how it works, it will have different levels of abstraction.
 
 > *Objects will be modeled with different abstraction levels to hide information and only make public a limited interface to interact with them.*
 
@@ -175,6 +183,12 @@ classDiagram
     note for Plane "B787"
     note for Plane "Cyrrus"
 ```
+
+The extend or shareability of the interface (what instances of which classes can interact with an instance's interface) is mostly labeled in three categories: public, protected and private.
+
+- **Public** interfaces is everything that's shared to and can be modified by any instance of any class. All Python methods and attributes are public by default (they are technically all public because private and protected only use name scrambling to impede unwanted overriden of methods and attributes by other classes).
+- **Protected** only allows the subclasses'instances to modify and access the class' instance's attributes and methods. They are distinguisable by the presence of a single underscore (``_``).
+- **Private** doesn't allow any class to access any private method or attribute. This is the ultimate level of encapsulation: a secured capsule. Nonetheless, there are often public ***setter*** and ***getter*** methods (the other part of encapsulation) to access and modify the information in a class.
 
 ### Composition and aggregation
 
@@ -315,6 +329,12 @@ classDiagram
     }
 ```
 
+Also, it should be mentioned in other programming languages like C++ and Java there are two crucial concepts in OOP: interfaces and abstract classes. 
+- **Interfaces** are in essence an empty blueprint for subclasses. They just have abstract methods (only declared) and instances of them cannot be created. A widely used simile is they are *contracts* that states "this is the way classes need to look" to which the subclass must agree showing it is just like it.
+- **Abstract classes** are base classes that cannot be instantiated. They can have some attributes and methods defined, but they must have methods that will only be defined by the subclasses. Again, just like interfaces, they involve an agreement with the subclasses, but this time not only will they have to look the same, but they will need to leave the work done (the behaviors defined) alone, and fill in the blanks left.
+
+In Python, there aren't any of the two; the closest it can get is by using the ``NotImplementedError`` exception and something called [``descriptors``](https://docs.python.org/3/howto/descriptor.html#descriptor-guide) (more about them should be researched). However, base or parent classes act almost in the same way, they just don't have the label or the restrictions the other two have. Yet, this means inheritance entails *abstraction* levels, so it plays a huge role in it.
+
 ### Polymorphism
 Say you have a bunch of cars, you are indeed the owner of a huge car collection, congratulations! You now want to gather them in categories or classes. You might start by sorting them by their method of propulsion, i.e., electric, hybrid or gas-powered. You then focus on the gas-powered cars and categorize them according to their transmission: mannual, automatic or semi-automatic.
 
@@ -324,21 +344,8 @@ You're now explaining to a friend interesting in buying a car the difference and
 
 So, with this in mind, you tell your friend all cars get started, but electric and hybrid require to be charged only, and no ignition is needed to start them, whereas the gas-powered machines need fuel and a whole different method to start the engine. Plus, hybrids and automatics often require a button to start the car, while manuals need a neutral gear or the clutch engaged to start the engine. And here is where you notice something different also: there are two types of polymorphism.
 
-> *Overriding is at the least an **addition of some specifications** to a behavior and at most a complete overwriting of the behavior. In any case, it involves **inheritance** by default (the behavior is inherited and then overriden in a subclass).*
+> *Overriding is at the least an **addition of some specifications** to a behavior and at most a complete **overwriting** of the behavior. In any case, it involves **inheritance** by default (the behavior is inherited and then overriden in a subclass).*
 
 > *Overloading is **conditioning** the same behavior to **different contexts** deppending on different requirements or triggers. It doesn't involve inheritance (the behavior is done by the same class).*
 
 Something to note is that overriding occurs during runtime, whereas overloading happens during compile time. The reason lies in inheritance: the overloaded method or behavior will have multiple forms within the class, it is defined that way, whereas an overriden method will only appear once the instance of a subclass is created and the method is called using that instance, because then and only then the method will be necessarily redefined. For more information, click [here](https://www.javatpoint.com/compile-time-vs-runtime).
-
-
-### Encapsulation
-
-- All classes are **public** by default in Python, in fact, even the private and protected are not really public, since it doesn't realy change anything of the class.
-- To set an attribute protected you use a single underscore (_) before its name, and if it is a method you simply add one more at the end (e.g. \_function()\_)
-- To set something private use double underscore (__).
-
-Protected only allows the subclasses'instances to modify and access the class' instance's attributes and methods, whereas private doesn't allow any class apart from the on the private and public methods and attributes are declared.
-
-Private methods and attributes of a class can only be changed by an instance of the same class
-
-Usually, private attributes have a protected or public method associated which modify them or show them to the public interface, so it is a way of "violating" the privacy of the attribute using methods of the same class.

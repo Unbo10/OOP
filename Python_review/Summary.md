@@ -42,3 +42,19 @@ The use of the `global` keyword is not encouraged, since it could cause troubles
 `Ctrl + R` to make a "back search", which searches for previously-written commands in the terminal.
 `Shift` to paste something from the clipboard, though at least in Windows `Ctrl + V` also works.
 
+## Decorators
+
+Decorators came up as a push to make code more readable with regard to 'nested calls' of functions, i.e., passing functions as arguments of other functions. Before them, calls were done after a function declaration, which meant is ultimate functionality was not present at first. Decorators made this possible with a rather strange syntax:
+
+```py
+@decorator
+def func():
+    pass
+```
+
+Using the ``@`` symbol and the name of the 'decorator function', you can use the wrapped function `func` as an argument of the decorator function.
+
+It is useful when adding functionality to functions, especially inside classes. For example, the ``@classmethod`` decorator is used to define a class method, which passes the class itself as an argument rather than an instance of the class; whilst the ``@staticmethod`` decorator is used to define a static method, which does not pass the class or instance and is supposed to make a specific behavior related to the class but that doesn't require access to it or any of its instances.
+
+
+

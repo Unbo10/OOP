@@ -52,8 +52,9 @@ if __name__ == "__main__":
     l5: list = l1[1:4:6] # * Slicing: returns a list with the elements from start to stop with a step
     l6: list = l1[::-1] # Steps can be negative, which means they will be taken in reverse
     l7: list = l1[-2:]
-    l7 = l1[:-2] # Stop and start with a negative index means to start counting from the last elemento to the first
+    l7 = l1[:-2] # Stop and start with a negative index means to start counting from the last element to the first
     l8 = l1[slice(1, 4, 6)] # The slice function is equivalent to the slicing notation
+    print("l6", l6)
 
     l1.append(1) # * Adds the element to the end of the list
     l1.insert(8, 2) # * Inserts the element at the index and shits all the elements to the right including
@@ -61,12 +62,12 @@ if __name__ == "__main__":
     l1.pop(0) # * Removes the element at the index and returns it (you can assign it to a variable)
     l1.pop() # * Removes the last element of the list if no argument is passed   
     l1.remove(2) # * Removes the first occurrence of the element in the list
-    l1.sort(reverse=True) # * Sorts the list in ascending order, and reverse=True sorts it in descending order
+    l2.sort(reverse=True) # * Sorts the list in ascending order, and reverse=True sorts it in descending order
 
     is_prime = (lambda x: all(x % y != 0 for y in range(2, x)))
-    primes = [is_prime(x = x) for x in range(2, 100) if (x < 50)]
+    primes = [is_prime(x=x) for x in range(2, 100) if (x < 50)]
     # * Expression to return | For an iterable | If a condition is met
-    print(primes)
+    print("primes", primes)
 
     
     sums = (lambda x, y: x + y) # * A lambda function is a compressed function which only 
