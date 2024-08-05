@@ -2,10 +2,10 @@
 
 ## Introduction
 
-In most programming languages there are two main types of errors that can appear due to different reasons: compilation errors and runtime or execution errors. The first ones include syntax or parsing, logic and semantic errors, which refer to mistakes found by the parser implying that a piece of the code does not correspond to the selected language's valid syntax; and mistakes that, although they have a valid syntax and may have a correct logic behind, induce a statement that does not make sense in the current context, respectively.
+In most programming languages there are two main types of errors that can appear due to different reasons: compilation errors and runtime or execution errors. The first ones include syntax or parsing, logic and semantic errors, which refer to mistakes found by the parser implying that a piece of the code does not correspond to the selected language's valid syntax.
 
 On the other hand, runtime or execution errors (better known as **bugs**) appear after the program has been compiled (so it doesn't have any of the previous errors). These encompass logic errors made by the programmer that allow the program to run but it returns an incorrect output due to a wrong reasoning and the main topic of this summary: exceptions.
-*
+
 > *Exceptions are runtime errors that stop the execution of the program because of unexpected behaviors. They are ***events or instances*** of abnormal situations that the programming language doesn't know how to handle*.
 
 Notice the use of the word *instances*. Of course it has nothing to do with classes, errors must be a reserved keyword... right?
@@ -40,7 +40,7 @@ while True:
         x = int(input("Please enter a number: "))
         break
     except ValueError:
-        print("Oops!  That was no valid number.  Try again...")
+        print("Oops!  That was no valid number. Try again...")
 ```
 
 Note that, as said, once an error occurs, the remaining lines of the ``try``'s suite are ignored (otherwise, in the example, in any case it would exit the ``while`` cycle). That is the beauty and usfulness of ``try``: it is somewhat *an interpreter within the interpreter* that checks, inside a block of code, for runtime errors line-by-line, but doesn't end the execution if one appears, instead, it passes it to the respective handler which can do pretty much anything with it and after its suite execution the rest of the active script's lines are executed normally. 
@@ -68,7 +68,7 @@ The steamroller can go over all the bumps or only certain bumps if it is told to
 
 Note: Exception groups are instances -too- of the classes ``ExceptionGroup`` and/or ``BaseExceptionGroup``. They have [different methods](https://docs.python.org/3/library/exceptions.html#exception-groups) although pretty much the same attributes as ``Exception`` and ``ExceptionGroup``, respectively. If an error matches multiple blocks, it will be handled by the first one.
 
-It should be noted that, in the same ``try`` structure there cannot be handlers of exception groups and of single exceptions. Examples of ``except*`` can be found in its [documentation](https://docs.python.org/3/library/exceptions.html#BaseExceptionGroup.derive):
+It should be noted that, in the same ``try`` structure, there cannot be handlers of exception groups and of single exceptions. Examples of ``except*`` can be found in its [documentation](https://docs.python.org/3/library/exceptions.html#BaseExceptionGroup.derive):
 
 ### The ``else`` and ``finally`` blocks
 
@@ -97,7 +97,7 @@ The ``else``'s and ``finally``'s suites are optional in the ``try-except`` struc
 
   As can be seen, the ``else``'s suite is just a continuation of ``try``'s: ``n`` can be accessed in both, although that should happen throughout the rest of the script as long as there is no errors and exceptions are handled correctly.
 
-- The ``finally`` keyword introduces a *cleanup* handler. It is suppose to deal with any kind of exceptions that were not handled by any of the previous handlers. In addition, it will be executed whether the exceptions were handled or not, in contrast to ``else``. Also, it has quite a high hierarchy in terms of keywords, since it will be executed whether control flow change keywords (``return``, ``continue``, or ``break``) are present or not; if they are, ``finally``'s suite will be executed "on the way out" of the ``try`` structure. For example:
+- The ``finally`` keyword introduces a *cleanup* handler. It is suppose to deal with any kind of exceptions that were not handled by any of the previous handlers. In addition, it will be executed whether the exceptions were handled or not, in contrast to ``else``. Also, it has quite a high hierarchy in terms of keywords, since it will be executed whether control flow change keywords (``return``, ``continue``, or ``break``) are present or not; if there are, ``finally``'s suite will be executed "on the way out" of the ``try`` structure. For example:
   
   ```py
     def foo():

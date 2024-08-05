@@ -1,3 +1,11 @@
+## Definitions worth knowing
+
+* **Git**: Version control system.
+* **Compiler**: Program that translates the entire source file into binary or object code and then makes the computer execute it (faster).
+* **Interpreter**: Program that translates and executes the code line by line (easier to debug).
+* **IDE**: Integrated Development Environment, is an application that has multiple software-development tools integrated into it. It is what spreadsheets are to accountants.
+* **Editor**: A standalone application to write code. It has multiple tools to write better code more efficiently.
+
 # Python review
 
 ## Basic code structure
@@ -24,7 +32,7 @@ def get_squared_number(x) -> float:
 
 ## Variables
 
-They are actually a memory location that is pointed at by an identifier and where some data is stored. The identifiers are the word to name or refer to your variable (use snake_case), like `route_direction`, and *hide* the memory locations, while the data stored is the value *assigned* to the variable.
+They are actually a **memory location** that is pointed at by an identifier and where some data is stored. The identifiers are the words to name or refer to your variables (use snake_case), like `route_direction`, and *'hide'* the memory locations, while the data stored is the value *assigned* to the variable.
 
 Since Python is not too strongly-typed, you don't need to specifiy the variables' types, but you can do so -and it is strongly recommended- using `: data type` after the identifier:
 
@@ -37,14 +45,14 @@ The use of the `global` keyword is not encouraged, since it could cause troubles
 
 ## Terminal tricks
 
-`Ctrl + L` to clean the terminal.
-`Ctrl + C` to stop the execution of any program.
-`Ctrl + R` to make a "back search", which searches for previously-written commands in the terminal.
-`Shift` to paste something from the clipboard, though at least in Windows `Ctrl + V` also works.
+- `Ctrl + L` to clean the terminal.
+- `Ctrl + C` or `Ctrl + Z` to stop the execution of any program.
+- `Ctrl + R` to make a "back search", which searches for previously-written commands in the terminal.
+- `Shift` to paste something from the clipboard, though at least in Windows `Ctrl + V` also works (definitely not in Linux though).
 
 ## Decorators
 
-Decorators came up as a push to make code more readable with regard to 'nested calls' of functions, i.e., passing functions as arguments of other functions. Before them, calls were done after a function declaration, which meant is ultimate functionality was not present at first. Decorators made this possible with a rather strange syntax:
+Decorators came up as a push to make code more readable with regard to 'nested calls' of functions, i.e., passing functions as arguments of other functions. Before them, calls were done after a function declaration, which meant their ultimate functionality was not present at first. Decorators made this possible with a rather strange syntax:
 
 ```py
 @decorator

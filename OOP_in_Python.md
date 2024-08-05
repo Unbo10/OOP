@@ -20,6 +20,7 @@ class Foo:
 
     def increase_class_counter(self):
         Foo.class_counter += 1 
+        __class__.class_counter += 1
         # * Inside instance methods, both the class name and the __class__ 
         # * attribute can be used to access class attributes.
     

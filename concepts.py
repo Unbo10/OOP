@@ -1,4 +1,5 @@
-# * Objects are only present in execution time. Classes are the code, so it doesn't depend on the program's execution.
+
+# * Objects are only present in run time. Classes are the code, so it doesn't depend on the program's execution.
 
 # * Instantiating is a great way to reuse code: using classes you can have multiple objects that share the same code so you don't need to 
 

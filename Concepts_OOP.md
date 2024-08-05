@@ -92,7 +92,9 @@ We, as humans, extract information from the real world all the time. In fact, so
 
 In the same way, we model objects and classes as a world apart, but *as close as we want* to 'real' life, describing objects' properties and behaviors, while grouping them in classes. This is what abstraction is all about: translating ideas, real-life situations, processes into an object-oriented design, much like taking objects from a dimension to another one without losing any of its essence.
 
-> *Abstraction is the process of grasping enough detail from a task so to model it in object-oriented terms.*
+> *Abstraction is the process of grasping enough detail from a task so to model it in object-oriented terms. During it, it assigns the objects' properties and behaviors to classes.*
+> 
+> *In other words, it responds to ***what*** will an object of a class do and what information will it contain, not how does it do what it does or the details of the information (that's encapsulation).*
 
 In consequence, the abstraction process is the first to be done when applying the object-oriented approach to some task or problem. In fact, the output of the OOD (design) stage should be a class diagram which abstracts all the information grasped into an implementation specification or interface. In consequence, once you have the classes, the relations between them, its attributes and methods, and its instance count (the amount of instances to be created from that class), you should be all set to implement the design.
 
@@ -102,11 +104,11 @@ Although abstraction seems to be most of what's needed to model anything using t
 
 Just by looking at the word you can tell it should have something to do with capsules, right? Now go back to procedural programming, what do you have? A bunch of functions and variables flying around your code. It would be wonderful to wrap it all into more comprehensible blocks of code, wouldn't it? Well, that's what encapsulation is all about (and, in a way, it's what makes OOP possible):
 
-> *Encapsulation is the process of bundling or gluing together data and the methods that operate on that data within a single unit (class)*.
+> *Encapsulation is the process of bundling or gluing together data and actions within a single unit (class) while defining layers of access to the data and actions.*
 
 So object-oriented modeling implies necesarrily to bring from the real, data, fantasy or any other world, some sort of information to the Object-Oriented World (OOW). To do that 'trip' or 'translation' you need to get the information into capsules that are unaltered in the trip to the OOW. Those capsules are created during the encapsulation process. So encapsulation means translating everything into classes that contain attributes and methods.
 
-> With the current definition, however, encapsulations seems pretty much the same as abstraction, so what's the difference? Well, when doing abstraction, you *grasp* or *select* certain information from all the available, whilst when applying encapsulation you *bundle* or *glue* the grapsed information into data units. That's why after OOA you end up with some requirements, which determine the filter the abstraction process will use; while after OOD, you end up with an implementation specification that tells you how is the information grasped going to fulfill the requirements.
+> With the current definition, however, encapsulations seems pretty much the same as abstraction, so what's the difference? Well, both involve the creation of classes, but after abstraction a list of properties and methods is left. This list will then be modified in the encapsulation process to make sure the object of a class is presented to other classes via a public interface, and that the object's internals are kept private (information hiding).
 
 ```mermaid
 classDiagram
@@ -124,13 +126,15 @@ classDiagram
     note for Plane "Cyrrus"
 
     class Bus {
-        Series model
-        Fuel efficiency
         Manufacturer
-        Age
-        start()
-        drive(driver, fuel, route)
-        brake(driver, trigger)
+        - Series model
+        - Fuel efficiency
+        - Age
+        + brake(driver, trigger)
+        + drive(driver, fuel, route)
+        + start()
+        - change_door_pressure()
+        - send_request_stop_current()
     }
     note for Bus "Marcopolo"
     note for Bus "Volvo"
@@ -160,7 +164,7 @@ classDiagram
 
 This might be a controversial simile, but we need to model objects the engineering way: we want each object to be a scientist, i.e., that it knows its internal functionality in detail, but when interacting with another objects will become engineers: they will only tell each other what's useful and relevant about them, so the others can work with them without having to deal with the difficult and irrelevant-to-their-purpose stuff.
 
-To put it in formal terms, when being scientists the objects can change its internals without affecting their interaction with other objects, but when being engineers they'll use **information hiding**, which speaks by itself, and so only a **public interface** will be published to the outer objects so they can interact with the object enough to do what they need to do.
+To put it in formal terms, when being scientists the objects can change its internals without affecting their interaction with other objects, but when being engineers they'll use **information hiding**, which speaks by itself, and so only a **public interface** will be available to the outer objects so they can interact with the object enough to do what they need to do.
 
 Although this is considered part of encapsulation, it is the last form of abstraction (after all, abstraction entails encapsulation): you translate enough of the object into the object-oriented world so you know *what* you're dealing with, and depending of how much do you want to know about how it works, it will have different levels of abstraction.
 
@@ -349,3 +353,6 @@ So, with this in mind, you tell your friend all cars get started, but electric a
 > *Overloading is **conditioning** the same behavior to **different contexts** deppending on different requirements or triggers. It doesn't involve inheritance (the behavior is done by the same class).*
 
 Something to note is that overriding occurs during runtime, whereas overloading happens during compile time. The reason lies in inheritance: the overloaded method or behavior will have multiple forms within the class, it is defined that way, whereas an overriden method will only appear once the instance of a subclass is created and the method is called using that instance, because then and only then the method will be necessarily redefined. For more information, click [here](https://www.javatpoint.com/compile-time-vs-runtime).
+
+    # ! Single underscore methods do not imply they are protected.
+    # ! There are no protected methods in Python.
